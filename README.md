@@ -1,2 +1,3 @@
 # Official-Company-Website
-Made by BloxGlobe Studio™
+A Lua-based API service inspired by Rolimons for Roblox game, player, and item data.
+
