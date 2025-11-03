@@ -3,31 +3,1015 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloxGlobe Studio</title>
+    <title>Voidstrap - Ultimate Bloxstrap Fork</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="jWFVuvxDGpmN.com/ajax/libs/font-awesome/NqSFK4fNy72a.0/css/8K79off6v8Df.css">
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.imgur.com/DEbO2tM.png" type="image/x-icon">
+    <!-- Optional PNG favicon for better compatibility -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/DEbO2tM.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/DEbO2tM.png">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
+            background: linear-gradient(90deg, #0f0f0f 0%, #1A0033 60%, #663399 100%);
+            min-height: 100vh;
+            color: #f0f0f0;
+            position: relative;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .hero-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px 0;
+
+            /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1a1a1a; /* Track color */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #6b7280; /* Thumb color (gray-500) */
+        border-radius: 6px;
+        border: 3px solid #1a1a1a; /* Match track for inset effect */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #9ca3af; /* Lighter on hover (gray-400) */
+    }
+
+    /* For Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #6b7280 #1a1a1a;
+    }
+
+        /* Base Button Style */
+        button {
+            background-color: #1f2937; /* Gray-800 */
+            color: #ffffff;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+            /* Hover Animation */
+            button:hover {
+                background-color: #374151; /* Gray-700 */
+                transform: scale(1.05); /* Slight pop */
+                box-shadow: 0 6px 12px rgba(156, 163, 175, 0.2); /* Soft glow */
+            }
+
+
+        /* Animated background bubbles - smoother and more dynamic */
+        .bg-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(149, 76, 233, 0.15);
+            box-shadow: 0 0 15px 5px rgba(149, 76, 233, 0.3);
+            pointer-events: none;
+            z-index: -1;
+            will-change: transform, opacity;
+            mix-blend-mode: screen;
+            animation: bubbleFloat 8s ease-in-out infinite, bubblePulse 6s ease-in-out infinite;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Slight floating up and down with subtle horizontal shift */
+        @keyframes bubbleFloat {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translate3d(10px, -15px, 0) scale(1.1) rotate(5deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes bubblePulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1) rotate(0deg);
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            50% {
+                opacity: 0.85;
+                transform: scale(1.2) rotate(3deg);
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+
+
+        /* Enhanced Gradient Card with ultra-smooth depth, blur, and subtle hover */
+        .gradient-card {
+            background: rgba(30, 0, 60, 0.5); /* slightly lighter for better layering */
+            backdrop-filter: blur(24px); /* stronger blur for more softness */
+            -webkit-backdrop-filter: blur(24px); /* Safari support */
+            border: 1.5px solid rgba(149, 76, 233, 0.15); /* even softer and thinner border */
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(99, 45, 165, 0.1), 0 0 12px rgba(149, 76, 233, 0.2); /* layered shadows for subtle glow and depth */
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+            /* Optional subtle hover effect to increase depth and interactivity */
+            .gradient-card:hover {
+                transform: translateY(-6px) scale(1.02);
+                box-shadow: 0 12px 36px rgba(99, 45, 165, 0.15), 0 0 20px rgba(149, 76, 233, 0.3);
+                border-color: rgba(149, 76, 233, 0.35);
+                background: rgba(30, 0, 60, 0.55);
+            }
+
+
+        .feature-icon {
+            background: linear-gradient(135deg, #7a39fb 0%, #981bfe 100%);
+            transition: all 0.3s ease;
+        }
+
+            .feature-icon:hover {
+                transform: rotate(10deg) scale(1.1);
+            }
+
+        /* Add subtle gradient overlay for richer color depth */
+        .gradient-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 14px;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(147, 86, 250, 0.15), rgba(82, 36, 180, 0.15));
+            mix-blend-mode: overlay;
+            transition: background 0.4s ease;
+        }
+
+        .gradient-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(152, 27, 254, 0.35);
+            border-color: rgba(149, 76, 233, 0.45);
+        }
+
+            .gradient-card:hover::before {
+                background: linear-gradient(135deg, rgba(147, 86, 250, 0.25), rgba(82, 36, 180, 0.25));
+            }
+
+
+        /* Feature Icon with smooth rotation and scale */
+        .feature-icon {
+            background: linear-gradient(135deg, #7a39fb 0%, #981bfe 100%);
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .feature-icon:hover {
+                transform: rotate(12deg) scale(1.15);
+                box-shadow: 0 0 15px rgba(152, 27, 254, 0.6);
+            }
+
+        /* Enhanced Download button with stronger hover feedback */
+        .download-btn {
+            background: linear-gradient(135deg, #7a39fb 0%, #981bfe 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(122, 57, 251, 0.3);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-position 0.5s ease;
+            background-size: 200% 200%;
+            background-position: 0% 50%;
+        }
+
+            .download-btn:hover {
+                transform: translateY(-5px) scale(1.05);
+                box-shadow: 0 16px 32px rgba(152, 27, 254, 0.65), 0 0 12px rgba(152, 27, 254, 0.6);
+                background-position: 100% 50%;
+            }
+
+
+        /* Improved Nav link underline animation */
+        .nav-link {
+            position: relative;
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            padding-bottom: 4px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background: #7a39fb;
+                border-radius: 2px;
+                transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-link:hover {
+                color: #7a39fb;
+            }
+
+                .nav-link:hover::after {
+                    width: 100%;
+                    left: 0;
+                }
+
+
+        /* Badge with subtle scaling */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            background-color: rgba(122, 57, 251, 0.25);
+            color: #7a39fb;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: default;
+        }
+
+            .badge:hover {
+                transform: scale(1.08);
+                background-color: rgba(122, 57, 251, 0.35);
+            }
+
+        /* FAQ Accordion Styles */
+        .faq-item {
+            border-bottom: 1px solid rgba(149, 76, 233, 0.15);
+            background-color: transparent;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .faq-item:hover {
+                background-color: rgba(50, 20, 80, 0.25);
+            }
+
+        .faq-question {
+            cursor: pointer;
+            padding: 1.5rem 1rem;
+            position: relative;
+            font-weight: 600;
+            color: #ddd;
+            font-size: 1.1rem;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+            .faq-question::after {
+                content: '+';
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.6rem;
+                color: #7a39fb;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            .faq-question.active {
+                color: #cda4ff;
+            }
+
+                .faq-question.active::after {
+                    content: '-';
+                    color: #981bfe;
+                    transform: translateY(-50%) rotate(180deg);
+                }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1rem;
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+            .faq-answer.show {
+                max-height: 400px;
+                padding: 0 1rem 1.25rem;
+            }
+
+        /* Glow Effect on Hover */
+        .glow-on-hover {
+            transition: box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+            .glow-on-hover:hover {
+                box-shadow: 0 0 8px rgba(152, 27, 254, 0.4), 0 0 16px rgba(152, 27, 254, 0.5), 0 0 32px rgba(152, 27, 254, 0.6);
+            }
+
     </style>
 </head>
-<body>
-    <h1>BloxGlobe</h1>
-    
-    <!-- Hero image -->
-    <img src="assets/image.png" alt="BloxGlobe Hero Image" class="hero-image">
 
-    <div id="content">
-        <!-- Content will be loaded by script.js -->
+<body class="font-sans">
+    <!-- Animated Background Elements -->
+    <div id="bubbles-container"></div>
+
+    <!-- Navigation -->
+    <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3">
+                <img src="https://i.imgur.com/DEbO2tM.png" alt="Voidstrap Logo" class="h-10 w-auto glow-on-hover" />
+                <span class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">Voidstrap</span>
+            </div>
+
+            <!-- Navigation Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-white font-medium hover:text-purple-300 transition-colors">Features</a>
+                <a href="#download" class="text-white font-medium hover:text-purple-300 transition-colors">Download</a>
+                <a href="#faq" class="text-white font-medium hover:text-purple-300 transition-colors">FAQ</a>
+                <a href="#community" class="text-white font-medium hover:text-purple-300 transition-colors">Community</a>
+                <a href="https://discord.com/invite/voidstrap" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-1 text-white hover:text-purple-300 transition-colors glow-on-hover">
+                    <i class="fab fa-discord text-lg"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white glow-on-hover" aria-label="Open navigation menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+
+
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 py-24 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600 drop-shadow-md">Voidstrap</span>
+        </h1>
+        <img src="https://github.com/voidstrap/Voidstrap/blob/main/Images/1748248817498.png"
+             alt="Voidstrap Image"
+             class="centered-image"
+             style="width: 45%; height: auto;">
+        <p class="text-xl md:text-2xl font-medium text-gray-300 mb-4">
+            The Ultimate Bloxstrap Fork for Roblox Optimization
+        </p>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400 mb-10">
+            Unlock advanced features, seamless performance improvements, and a modern interface to enhance your Roblox experience with Voidstrap.
+        </p>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-12">
+            <a href="https://github.com/voidstrap/Voidstrap/releases" class="px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-lg transition glow-on-hover flex items-center gap-2">
+                <i class="fas fa-download"></i>
+                <span>Download Now</span>
+            </a>
+            <a href="https://github.com/voidstrap/Voidstrap" class="px-8 py-4 rounded-full border border-purple-500 text-white font-semibold hover:bg-purple-900/30 transition glow-on-hover flex items-center gap-2">
+                <i class="fas fa-star"></i>
+                <span>Star on GitHub</span>
+            </a>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 text-sm">
+            <a href="https://github.com/voidstrap/Voidstrap/blob/main/LICENSE.md" class="badge px-4 py-2 rounded-full bg-yellow-600/20 text-yellow-400 border border-yellow-600/50 glow-on-hover">
+                <i class="fas fa-balance-scale mr-1"></i> MIT License
+            </a>
+            <a href="https://github.com/voidstrap/Voidstrap/releases" class="badge px-4 py-2 rounded-full bg-purple-600/20 text-purple-300 border border-purple-600/50 glow-on-hover">
+                <i class="fas fa-download mr-1"></i> 3.5k Downloads
+            </a>
+            <a href="https://github.com/voidstrap/Voidstrap/releases" class="badge px-4 py-2 rounded-full bg-indigo-600/20 text-indigo-300 border border-indigo-600/50 glow-on-hover">
+                <i class="fas fa-tag mr-1"></i> v1.0.3.7 Latest
+            </a>
+            <a href="https://opentip.kaspersky.com/87EBA70EE3385DE38C2A705499B4899E4CEF6C6734C83632C4A5D6C33C84CD88/results?tab=upload" class="badge px-4 py-2 rounded-full bg-green-600/20 text-green-300 border border-green-600/50 glow-on-hover">
+                <i class="fas fa-shield-virus mr-1"></i> Verified Safe
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Warning Banner -->
+    <div class="bg-yellow-800/20 border-l-4 border-yellow-400 text-yellow-100 p-5 mb-16 mx-auto max-w-4xl rounded-md shadow-lg transition hover:shadow-yellow-500/30">
+        <div class="flex items-start space-x-4">
+            <div class="text-yellow-400 text-xl pt-1">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div>
+                <p class="text-lg font-semibold">Warning</p>
+                <p class="mt-1 text-sm leading-relaxed">
+                    The only official places to download <strong>Voidstrap</strong> are our <a href="https://github.com/voidstrap/Voidstrap" class="underline hover:text-yellow-300">GitHub repository</a> and our <a href="https://discord.gg/voidstrap" class="underline hover:text-yellow-300">Discord</a>. Any other websites offering downloads or claiming to represent us are unofficial and untrusted.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+
+    <!-- Features Section -->
+    <section id="features" class="container mx-auto px-6 py-16">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">🚀 Key Features</h2>
+            <p class="text-xl text-purple-200 max-w-3xl mx-auto">Voidstrap comes packed with powerful features to enhance your Roblox experience</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center mb-4 glow-on-hover">
+                    <i class="fas fa-bolt text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Enhanced Performance</h3>
+                <p class="text-purple-100">Optimized for smooth operation with hardware acceleration toggle and improved Windows detection.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center mb-4 glow-on-hover">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Multi-Instance Support</h3>
+                <p class="text-purple-100">Launch multiple Roblox clients simultaneously for enhanced productivity.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center mb-4 glow-on-hover">
+                    <i class="fas fa-exchange-alt text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Cross-Game Teleport</h3>
+                <p class="text-purple-100">Added option to enable cross-game teleport (fixes Error 773).</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center mb-4 glow-on-hover">
+                    <i class="fas fa-sliders-h text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Channels Manager</h3>
+                <p class="text-purple-100">Switch between Production, Live, and ZLive channels with ease.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center mb-4 glow-on-hover">
+                    <i class="fas fa-paint-brush text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">UI Improvements</h3>
+                <p class="text-purple-100">Enhanced readability, theme previews, and redesigned shortcuts.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center mb-4 glow-on-hover">
+                    <i class="fas fa-bug text-white text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Bug Fixes</h3>
+                <p class="text-purple-100">Various bug fixes & updates for smoother experience with rewritten code for better stability.</p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+        }
+    </style>
+
+    <!-- Full Features Section -->
+    <section class="container mx-auto px-6 py-16">
+        <div class="gradient-card p-8 rounded-xl glow-on-hover">
+            <h2 class="text-3xl font-bold mb-8 text-center">✨ Features & Enhancements</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <span class="feature-icon w-8 h-8 rounded-lg flex items-center justify-center mr-3 glow-on-hover">
+                                <i class="fas fa-plug text-sm"></i>
+                            </span>
+                            Integrations
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Player Logs – Track players as they join and leave</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Message Logs – Log chat messages for monitoring</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Launch Roblox Studio – Launch Studio via Voidstrap or shortcut</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Hardware Acceleration – Disables Hardware Acceleration and UI animations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Voidstrap Discord RPC – Shows that you're using Voidstrap on Discord (can be disabled)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>AI Chat – Chat with a built in AI all about FFlags (BETA).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Hub Page – Get Themes, Mods, and FFlags from others</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <span class="feature-icon w-8 h-8 rounded-lg flex items-center justify-center mr-3 glow-on-hover">
+                                <i class="fas fa-flag text-sm"></i>
+                            </span>
+                            Fast Flags
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Easy flag backups & restoration</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Eliminates editor warnings & flag validation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Customizable Roblox menus</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>FFlag History</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Over 800+ FFlags in one place</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <span class="feature-icon w-8 h-8 rounded-lg flex items-center justify-center mr-3 glow-on-hover">
+                                <i class="fas fa-palette text-sm"></i>
+                            </span>
+                            Appearance & Customization
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Tailored themes for a personalized launcher</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Customizable download status bar</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Theme Preview Mode – See changes before applying</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Over 10+ Themes to select from</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <span class="feature-icon w-8 h-8 rounded-lg flex items-center justify-center mr-3 glow-on-hover">
+                                <i class="fas fa-cog text-sm"></i>
+                            </span>
+                            Extras
+                        </h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Save last opened settings page</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Apply custom bootstrapper themes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Disable Roblox updates</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Over 7+ Different Mouse Cursors to choose</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Log Cleaner</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Cross Game Teleport (Fixes Error 773)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="container mx-auto px-6 py-16 text-center">
+        <h2 class="text-4xl font-bold mb-4">🛠️ Installation Guide</h2>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto mb-12">Get started with Voidstrap in just a few simple steps</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Step 1 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="text-3xl font-bold mb-4 text-purple-400">1</div>
+                <h3 class="text-xl font-bold mb-2">Download</h3>
+                <p class="mb-4 text-purple-100">Get the latest version from our GitHub</p>
+                <a href="https://github.com/voidstrap/Voidstrap/releases" class="inline-block px-6 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition glow-on-hover">
+                    Download Now
+                </a>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="text-3xl font-bold mb-4 text-purple-400">2</div>
+                <h3 class="text-xl font-bold mb-2">Install</h3>
+                <p class="mb-4 text-purple-100">Run the installer and configure your settings</p>
+                <div class="text-2xl text-purple-300">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <div class="text-3xl font-bold mb-4 text-purple-400">3</div>
+                <h3 class="text-xl font-bold mb-2">Enjoy</h3>
+                <p class="mb-4 text-purple-100">Experience a smoother Roblox with Voidstrap</p>
+                <div class="text-2xl text-purple-300">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="container mx-auto px-6 py-14">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">❓ Frequently Asked Questions</h2>
+            <p class="text-xl text-purple-200 max-w-3xl mx-auto">Find answers to common questions about Voidstrap</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item rounded-lg overflow-hidden mb-4 glow-on-hover">
+                <div class="faq-question">
+                    <h3 class="text-xl font-bold">Is Voidstrap safe to use?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p class="text-purple-100">Yes, Voidstrap is completely safe to use. It's open-source, so anyone can review the code, and it has been verified by multiple security services. We never collect any personal data or credentials.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item rounded-lg overflow-hidden mb-4 glow-on-hover">
+                <div class="faq-question">
+                    <h3 class="text-xl font-bold">Will using Voidstrap get me banned from Roblox?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p class="text-purple-100">No, Voidstrap doesn't modify game files or provide any unfair advantages. It's simply a launcher with quality-of-life improvements. Many popular Roblox content creators use similar tools without issues.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item rounded-lg overflow-hidden mb-4 glow-on-hover">
+                <div class="faq-question">
+                    <h3 class="text-xl font-bold">How is Voidstrap different from Bloxstrap?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p class="text-purple-100">Voidstrap builds upon Bloxstrap with additional features like enhanced performance options, better UI customization, more logging options, and various quality-of-life improvements. We also maintain more frequent updates.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item rounded-lg overflow-hidden mb-4 glow-on-hover">
+                <div class="faq-question">
+                    <h3 class="text-xl font-bold">Can I use Voidstrap on Mac or Linux?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p class="text-purple-100">Voidstrap is only officially supported on Windows. Native Mac or Linux support isn't planned for the future.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item rounded-lg overflow-hidden mb-4 glow-on-hover">
+                <div class="faq-question">
+                    <h3 class="text-xl font-bold">How do I update Voidstrap?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p class="text-purple-100">New Voidstrap releases are released on Github, download Voidstrap.exe and run it to update Voidstrap. We are trying to fix auto-update in an upcoming release.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item rounded-lg overflow-hidden mb-4 glow-on-hover">
+                <div class="faq-question">
+                    <h3 class="text-xl font-bold">Where can I get support if I have issues?</h3>
+                </div>
+                <div class="faq-answer">
+                    <p class="text-purple-100">Our Discord community is the best place to get support. Our team and community members are active there and can help troubleshoot any issues you might encounter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="container mx-auto px-6 py-16">
+        <div class="gradient-card p-8 rounded-xl glow-on-hover">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">🌟 Join the Voidstrap Community!</h2>
+                <p class="text-xl text-purple-200 max-w-3xl mx-auto">Connect with other users, get support, and stay updated</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Discord -->
+                <a href="https://discord.com/invite/voidstrap" class="group">
+                    <div class="gradient-card p-6 rounded-xl hover:bg-purple-900/30 transition border border-transparent group-hover:border-purple-500 glow-on-hover">
+                        <div class="text-4xl text-purple-300 mb-4 group-hover:text-white">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Discord</h3>
+                        <p class="text-purple-100">Join our community for support and updates</p>
+                    </div>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/voidstrap/Voidstrap" class="group">
+                    <div class="gradient-card p-6 rounded-xl hover:bg-purple-900/30 transition border border-transparent group-hover:border-purple-500 glow-on-hover">
+                        <div class="text-4xl text-purple-300 mb-4 group-hover:text-white">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">GitHub</h3>
+                        <p class="text-purple-100">Star the project and contribute</p>
+                    </div>
+                </a>
+
+                <!-- Issues -->
+                <a href="https://github.com/voidstrap/Voidstrap/issues" class="group">
+                    <div class="gradient-card p-6 rounded-xl hover:bg-purple-900/30 transition border border-transparent group-hover:border-purple-500 glow-on-hover">
+                        <div class="text-4xl text-purple-300 mb-4 group-hover:text-white">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Report Issues</h3>
+                        <p class="text-purple-100">Found a bug? Let us know!</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credits Section -->
+    <section class="container mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">🎨 Credits</h2>
+            <p class="text-xl text-purple-200 max-w-3xl mx-auto">The amazing team behind Voidstrap</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Credit 1 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <h3 class="text-xl font-bold mb-2 text-purple-300">New Logo</h3>
+                <p class="mb-2 text-purple-100">Mysticmulch</p>
+            </div>
+
+            <!-- Credit 2 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <h3 class="text-xl font-bold mb-2 text-purple-300">Voidstrap Code</h3>
+                <p class="mb-2 text-purple-100">midaskira (Co-Owner), KloBraticc (Owner)</p>
+                <div class="flex space-x-4">
+                    <a href="https://github.com/midaskira" class="text-purple-400 hover:text-white">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://github.com/KloBraticc" class="text-purple-400 hover:text-white">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Credit 3 -->
+            <div class="gradient-card p-6 rounded-xl glow-on-hover">
+                <h3 class="text-xl font-bold mb-2 text-purple-300">Contributors</h3>
+                <p class="mb-2 text-purple-100">Stoof, Flemish, 5070, TnoobixRT, Visibobl</p>
+                <div class="flex flex-wrap gap-2">
+                    <a href="https://github.com/bloxstraplabs/bloxstrap" class="text-sm text-purple-400 hover:text-white">
+                        Inspired by Bloxstrap
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <h3 class="text-xl font-bold mb-4">Looking to help?</h3>
+            <p class="mb-6 text-purple-200 max-w-2xl mx-auto">We're always looking for coders or anyone who would like to help us improve Voidstrap!</p>
+            <a href="https://discord.com/invite/voidstrap" class="inline-block px-6 py-3 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition glow-on-hover">
+                <i class="fab fa-discord mr-2"></i> Official Discord
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-purple-900/50 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="https://i.imgur.com/DEbO2tM.png" alt="Voidstrap Logo" class="h-10 glow-on-hover">
+                    <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600">Voidstrap</span>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://github.com/voidstrap/Voidstrap" class="text-purple-300 hover:text-white text-xl glow-on-hover">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://discord.com/invite/voidstrap" class="text-purple-300 hover:text-white text-xl glow-on-hover">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center text-purple-400 text-sm">
+                <p>© 2025 Voidstrap. All rights reserved.</p>
+                <p class="mt-2">The only official places to download Voidstrap are our GitHub repository and our Discord.</p>
+                <p class="mt-2">Roblox is a registered trademark of Roblox Corporation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate CSS for floating animation and bubble style
+        const bubbleCSS = document.createElement('style');
+        bubbleCSS.innerHTML = `
+                                    .bg-bubble {
+                                        position: absolute;
+                                        border-radius: 50%;
+                                        background: rgba(255, 255, 255, 0.1);
+                                        animation: float 10s ease-in-out infinite;
+                                        pointer-events: none;
+                                        z-index: 0;
+                                    }
+
+                                    @keyframes float {
+                                        0% {
+                                            transform: translate(0, 0) rotate(0deg);
+                                            opacity: 0.8;
+                                        }
+                                        50% {
+                                            transform: translateY(-20px);
+                                            opacity: 0.3;
+                                        }
+                                        100% {
+                                            transform: translate(0, 0) rotate(360deg);
+                                            opacity: 0.8;
+                                        }
+                                    }
+
+                                    .faq-question {
+                                        cursor: pointer;
+                                        user-select: none;
+                                        transition: color 0.3s ease;
+                                    }
+
+                                    .faq-answer {
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        transition: max-height 0.3s ease;
+                                    }
+
+                                    .faq-question.active + .faq-answer {
+                                        max-height: 200px;
+                                    }
+
+                                    .faq-answer.show {
+                                        max-height: 200px;
+                                    }
+                                `;
+        document.head.appendChild(bubbleCSS);
+
+        function createBubbles() {
+            const container = document.getElementById('bubbles-container');
+            const bubbleCount = 50;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bg-bubble';
+
+                const size = Math.random() * 150 + 50;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+
+                // Individualize animation timing
+                bubble.style.animationDuration = `${8 + Math.random() * 4}s`;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+                container.appendChild(bubble);
+            }
+        }
+
+        function setupFAQ() {
+            const questions = document.querySelectorAll('.faq-question');
+
+            questions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+
+                    questions.forEach(q => {
+                        if (q !== question) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.classList.remove('show');
+                        }
+                    });
+
+                    question.classList.toggle('active');
+                    answer.classList.toggle('show');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createBubbles();
+            setupFAQ();
+
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    alert('Mobile menu would open here in a full implementation');
+                });
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', e => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Parallax bubble movement on mouse move
+            document.addEventListener('mousemove', e => {
+                const bubbles = document.querySelectorAll('.bg-bubble');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                bubbles.forEach((bubble, index) => {
+                    const speed = (index % 5 + 1) * 0.05;
+                    const xOffset = (x - 0.5) * 40 * speed;
+                    const yOffset = (y - 0.5) * 40 * speed;
+
+                    bubble.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
+
