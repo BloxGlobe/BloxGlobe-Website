@@ -1,65 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ Makes it responsive -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BloxGlobe Studio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="assets/BloxGlobe.png" />
   <style>
-    /* Smooth dropdown animation */
-    .dropdown-enter {
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #0b0c10;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #cfd8dc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #00b8ff;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px 20px;
+      background: linear-gradient(180deg, #0b0c10, #1f2833);
+    }
+
+    .hero img {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .hero p {
+      color: #9aa4af;
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+
+    .hero .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero button {
+      background: #00b8ff;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      padding: 10px 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background: #008ec4;
+    }
+
+    /* ABOUT SECTION */
+    .about {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .about h2 {
+      color: #00c8ff;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: #d0d0d0;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* UPDATE LOG SECTION */
+    .update-log {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .update-log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .update-log-header h2 {
+      color: #00c8ff;
+      margin: 0;
+    }
+
+    .update-log-content {
+      overflow: hidden;
       max-height: 0;
       opacity: 0;
-      overflow: hidden;
       transition: all 0.4s ease;
     }
-    .dropdown-enter-active {
+
+    .update-log-content.open {
       max-height: 500px;
       opacity: 1;
+      margin-top: 15px;
+    }
+
+    .update-log p {
+      color: #ccc;
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
+
+    .update-log button {
+      background: #00b8ff;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .update-log button:hover {
+      background: #008ec4;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.4);
+      margin-top: 50px;
+      color: #b0b0b0;
+    }
+
+    footer img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #00c8ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        padding: 15px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .about, .update-log {
+        margin: 20px;
+        padding: 25px;
+      }
     }
   </style>
 </head>
-<body class="bg-gray-950 text-gray-100 font-sans">
 
-  <div class="p-6 w-full max-w-2xl mx-auto mt-10 bg-gray-900 rounded-2xl shadow-lg border border-gray-800">
-    <!-- Dropdown Header -->
-    <button id="toggleUpdates" class="w-full flex justify-between items-center text-lg font-semibold">
-      <span>Update Log</span>
-      <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/BloxGlobe.png" alt="BloxGlobe Logo" />
+      <h3>BloxGlobe</h3>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-    <!-- Dropdown Content -->
-    <div id="updateContent" class="dropdown-enter mt-4 space-y-2">
-      <p>🔥 Version 1.5.4 - Optimized layout & UI polish</p>
+  <section class="hero">
+    <img src="assets/BloxGlobe.png" alt="BloxGlobe Logo" />
+    <h1>BloxGlobe Studio</h1>
+    <p>Building the next generation of Roblox experiences.</p>
+    <div class="buttons">
+      <button onclick="window.open('https://www.roblox.com/users/5525937576/profile')">Visit Roblox</button>
+      <button onclick="window.open('https://whatsapp.com/channel/0029VaAfKWq7BLtUakspqi1R')">Join Community</button>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>About Us</h2>
+    <p>
+      At <strong>BloxGlobe Studio™</strong>, we’re passionate about bringing creativity and technology together.
+      Our team builds immersive Roblox experiences designed for fun, learning, and community engagement.
+      From small experiments to full-scale games, we aim to inspire players and developers alike.
+    </p>
+  </section>
+
+  <!-- 🔽 Update Log Dropdown -->
+  <section class="update-log">
+    <div class="update-log-header" onclick="toggleUpdateLog()">
+      <h2>Update Log</h2>
+      <button id="toggleButton">▼</button>
+    </div>
+    <div class="update-log-content" id="updateContent">
+      <p>🔥 <strong>Version 1.5.4</strong> - Optimized layout & UI polish</p>
       <p>💬 Feedback system connected</p>
       <p>🧠 Backend sync improvements</p>
+      <div style="text-align: right; margin-top: 10px;">
+        <button>Edit</button>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="text-center mt-10 text-sm text-gray-400">
-    © 2025 <strong>BloxGlobe Studio™</strong>. All rights reserved.  
-    <br>Developed with ❤️ by Abel
+  <footer>
+    <img src="assets/BloxGlobe.png" alt="Footer Icon" />
+    <p>© 2025 BloxGlobe Studio™. All rights reserved.</p>
+    <p>Developed with ❤️ by <a href="#">Abel</a></p>
   </footer>
 
   <script>
-    const toggleBtn = document.getElementById('toggleUpdates');
-    const updateContent = document.getElementById('updateContent');
-    const arrowIcon = document.getElementById('arrowIcon');
-    let isOpen = true;
-
-    toggleBtn.addEventListener('click', () => {
-      isOpen = !isOpen;
-      if (isOpen) {
-        updateContent.classList.add('dropdown-enter-active');
-        updateContent.classList.remove('dropdown-enter');
-      } else {
-        updateContent.classList.add('dropdown-enter');
-        updateContent.classList.remove('dropdown-enter-active');
-      }
-      arrowIcon.classList.toggle('rotate-180');
-    });
+    function toggleUpdateLog() {
+      const content = document.getElementById("updateContent");
+      const button = document.getElementById("toggleButton");
+      content.classList.toggle("open");
+      button.textContent = content.classList.contains("open") ? "▲" : "▼";
+    }
   </script>
 </body>
 </html>
