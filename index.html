@@ -1,282 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ Makes it responsive -->
   <title>BloxGlobe Studio</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/BloxGlobe.png" />
-
-  <!-- Styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(180deg, #0b0c10, #1f2833);
-      color: #fff;
-      overflow-x: hidden;
+    /* Smooth dropdown animation */
+    .dropdown-enter {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
     }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo img {
-      width: 45px;
-      height: 45px;
-      border-radius: 10px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-links a,
-    button {
-      color: #fff;
-      text-decoration: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a:hover,
-    button:hover {
-      color: #00c8ff;
-      transform: scale(1.05);
-    }
-
-    #feedbackBtn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #b0b0b0;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 6px 12px;
-      transition: all 0.3s ease;
-    }
-
-    #feedbackBtn:hover {
-      color: #00c8ff;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* GAME CARDS GRID */
-    #games {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 40px 60px;
-      justify-items: center;
-    }
-
-    .game-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .game-card:hover {
-      transform: scale(1.03);
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .game-card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 10px;
-    }
-
-    .play-btn {
-      margin-top: 10px;
-      background: #00c8ff;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .play-btn:hover {
-      background: #008ec4;
-    }
-
-    /* UPDATE LOG */
-    .update-log {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      margin: 30px 60px;
-      padding: 20px;
-      position: relative;
-    }
-
-    .edit-btn {
-      background: #00c8ff;
-      border: none;
-      color: white;
-      padding: 5px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      float: right;
-    }
-
-    .edit-btn:hover {
-      background: #009edb;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 25px;
-      margin-top: 50px;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
-      font-size: 14px;
-      color: #b0b0b0;
-    }
-
-    footer img {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-    }
-
-    footer a {
-      color: #00c8ff;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
+    .dropdown-enter-active {
+      max-height: 500px;
+      opacity: 1;
     }
   </style>
 </head>
+<body class="bg-gray-950 text-gray-100 font-sans">
 
-<body>
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <img src="assets/BloxGlobe.png" alt="BloxGlobe Logo" />
-      <h2>BloxGlobe Studio</h2>
-    </div>
-    <div class="nav-links">
-      <a href="https://www.roblox.com/users/5525937576/profile">Profile</a>
-      <a href="https://whatsapp.com/channel/0029VaAfKWq7BLtUakspqi1R">Follow</a>
-      <button id="feedbackBtn">💬 Feedback</button>
-    </div>
-  </header>
+  <div class="p-6 w-full max-w-2xl mx-auto mt-10 bg-gray-900 rounded-2xl shadow-lg border border-gray-800">
+    <!-- Dropdown Header -->
+    <button id="toggleUpdates" class="w-full flex justify-between items-center text-lg font-semibold">
+      <span>Update Log</span>
+      <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
 
-  <!-- GAME CARDS -->
-  <section id="games">
-    <div class="game-card" data-id="135869717619701">
-      <h3>ReadyNode [Beta]</h3>
-      <p>Explore the early build of ReadyNode!</p>
-      <button class="play-btn" onclick="window.open('https://www.roblox.com/games/135869717619701/Beta')">Play</button>
-    </div>
-
-    <div class="game-card" data-id="85250100428738">
-      <h3>R25</h3>
-      <p>R25 is your new way to play and build!</p>
-      <button class="play-btn" onclick="window.open('https://www.roblox.com/games/85250100428738/R25')">Play</button>
-    </div>
-  </section>
-
-  <!-- UPDATE LOG -->
-  <section class="update-log">
-    <h3>Update Log</h3>
-    <button class="edit-btn" onclick="enableEdit()">Edit</button>
-    <div id="logContent" contenteditable="false">
+    <!-- Dropdown Content -->
+    <div id="updateContent" class="dropdown-enter mt-4 space-y-2">
       <p>🔥 Version 1.5.4 - Optimized layout & UI polish</p>
       <p>💬 Feedback system connected</p>
       <p>🧠 Backend sync improvements</p>
     </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <img src="assets/BloxGlobe.png" alt="BloxGlobe Icon">
-    <p>© 2025 <strong>BloxGlobe Studio™</strong>. All rights reserved.</p>
-    <p>Developed with ❤️ by <a href="#">Abel</a></p>
+  <footer class="text-center mt-10 text-sm text-gray-400">
+    © 2025 <strong>BloxGlobe Studio™</strong>. All rights reserved.  
+    <br>Developed with ❤️ by Abel
   </footer>
 
-  <!-- JS -->
   <script>
-    // Feedback system
-    document.getElementById("feedbackBtn").onclick = () => {
-      window.open("https://github.com/BloxGlobe/Official-Company-Website/issues/new?title=Feedback", "_blank");
-    };
+    const toggleBtn = document.getElementById('toggleUpdates');
+    const updateContent = document.getElementById('updateContent');
+    const arrowIcon = document.getElementById('arrowIcon');
+    let isOpen = true;
 
-    // Admin edit mode
-    function enableEdit() {
-      const phrase = prompt("Enter Admin Phrase:");
-      if (phrase === "SpotifyLover.To") {
-        const log = document.getElementById("logContent");
-        log.contentEditable = true;
-        log.focus();
-        alert("Edit mode enabled.");
+    toggleBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      if (isOpen) {
+        updateContent.classList.add('dropdown-enter-active');
+        updateContent.classList.remove('dropdown-enter');
       } else {
-        alert("Access denied.");
+        updateContent.classList.add('dropdown-enter');
+        updateContent.classList.remove('dropdown-enter-active');
       }
-    }
-
-    // Roblox API Integration
-    async function loadGameInfo(universeId, card) {
-      try {
-        const res = await fetch(`https://games.roblox.com/v1/games?universeIds=${universeId}`);
-        const data = await res.json();
-        const game = data.data[0];
-
-        const thumbRes = await fetch(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${universeId}&size=512x512&format=Png&isCircular=false`);
-        const thumbData = await thumbRes.json();
-        const imgUrl = thumbData.data[0]?.imageUrl || "https://t5.rbxcdn.com/180DAY-2d1bce8a7bbdcdd0e6dc378c7b6f566c";
-
-        const img = document.createElement("img");
-        img.src = imgUrl;
-        img.alt = game.name;
-        card.prepend(img);
-
-        const stats = document.createElement("div");
-        stats.innerHTML = `
-          <p>👀 ${game.visits.toLocaleString()} visits</p>
-          <p>🧍 ${game.playing.toLocaleString()} playing</p>
-          <p>⭐ ${game.favoritedCount.toLocaleString()} favorites</p>
-        `;
-        card.appendChild(stats);
-      } catch (error) {
-        console.error("Error loading Roblox data:", error);
-      }
-    }
-
-    document.querySelectorAll(".game-card").forEach(card => {
-      loadGameInfo(card.dataset.id, card);
+      arrowIcon.classList.toggle('rotate-180');
     });
   </script>
 </body>
