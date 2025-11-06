@@ -83,7 +83,6 @@
       display: flex;
       justify-content: center;
       gap: 15px;
-      flex-wrap: wrap;
     }
 
     .hero button {
@@ -124,64 +123,102 @@
       font-size: 1rem;
     }
 
-    /* UPDATE LOG SECTION */
-    .update-log {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 30px;
+    /* GAMES SECTION */
+    .games {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .games h2 {
+      color: #00b8ff;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .game-card {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .update-log-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .update-log-header h2 {
-      color: #00c8ff;
-      margin: 0;
-    }
-
-    .update-log-content {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: all 0.4s ease;
-    }
-
-    .update-log-content.open {
-      max-height: 500px;
-      opacity: 1;
-      margin-top: 15px;
-    }
-
-    .update-log p {
-      color: #ccc;
-      margin: 10px 0;
-      font-size: 0.95rem;
-    }
-
-    .update-log button {
-      background: #00b8ff;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      padding: 6px 14px;
-      font-size: 0.9rem;
-      cursor: pointer;
+      border-radius: 12px;
+      padding: 20px;
       transition: 0.3s;
     }
 
-    .update-log button:hover {
-      background: #008ec4;
+    .game-card:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 184, 255, 0.15);
     }
 
-    /* FOOTER */
+    .game-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .game-card h3 {
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .game-card p {
+      color: #b0b0b0;
+      font-size: 0.9rem;
+    }
+
+    /* UPDATE LOG SECTION */
+    .update-log {
+      max-width: 300px;
+      position: relative;
+      float: right;
+      margin: 50px 80px 0 0;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .update-log h2 {
+      font-size: 1.3rem;
+      color: #00b8ff;
+      margin-bottom: 10px;
+    }
+
+    .dropdown {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid #00b8ff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .dropdown summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px;
+      color: #fff;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .dropdown summary:hover {
+      background: rgba(0, 184, 255, 0.2);
+    }
+
+    .dropdown ul {
+      margin: 0;
+      padding: 10px 15px;
+      list-style: none;
+      color: #ccc;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
     footer {
+      clear: both;
       text-align: center;
       padding: 30px;
       background: rgba(0, 0, 0, 0.4);
@@ -204,25 +241,6 @@
     footer a:hover {
       text-decoration: underline;
     }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        padding: 15px;
-      }
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      .about, .update-log {
-        margin: 20px;
-        padding: 25px;
-      }
-    }
   </style>
 </head>
 
@@ -235,7 +253,7 @@
     <nav class="nav-links">
       <a href="#">Home</a>
       <a href="#">About</a>
-      <a href="#">Projects</a>
+      <a href="#">Games</a>
       <a href="#">Contact</a>
     </nav>
   </header>
@@ -255,24 +273,41 @@
     <p>
       At <strong>BloxGlobe Studio™</strong>, we’re passionate about bringing creativity and technology together.
       Our team builds immersive Roblox experiences designed for fun, learning, and community engagement.
-      From small experiments to full-scale games, we aim to inspire players and developers alike.
     </p>
   </section>
 
-  <!-- 🔽 Update Log Dropdown -->
-  <section class="update-log">
-    <div class="update-log-header" onclick="toggleUpdateLog()">
-      <h2>Update Log</h2>
-      <button id="toggleButton">▼</button>
-    </div>
-    <div class="update-log-content" id="updateContent">
-      <p>🔥 <strong>Version 1.5.4</strong> - Optimized layout & UI polish</p>
-      <p>💬 Feedback system connected</p>
-      <p>🧠 Backend sync improvements</p>
-      <div style="text-align: right; margin-top: 10px;">
-        <button>Edit</button>
+  <section class="games">
+    <h2>Our Games</h2>
+    <div class="game-grid">
+      <div class="game-card">
+        <img src="assets/game1.png" alt="Game 1">
+        <h3>Galaxy Adventures</h3>
+        <p>Explore infinite worlds and challenge your friends in space!</p>
+      </div>
+      <div class="game-card">
+        <img src="assets/game2.png" alt="Game 2">
+        <h3>City Tycoon</h3>
+        <p>Build your dream city and become a business legend.</p>
+      </div>
+      <div class="game-card">
+        <img src="assets/game3.png" alt="Game 3">
+        <h3>Obby Rush</h3>
+        <p>Test your parkour skills in a fast-paced obstacle challenge.</p>
       </div>
     </div>
+  </section>
+
+  <section class="update-log">
+    <h2>Update Log</h2>
+    <details class="dropdown">
+      <summary>View Recent Updates ▼</summary>
+      <ul>
+        <li>v1.3 - Added new Games section</li>
+        <li>v1.2 - Improved UI + better scaling</li>
+        <li>v1.1 - Added community links</li>
+        <li>v1.0 - Initial website launch</li>
+      </ul>
+    </details>
   </section>
 
   <footer>
@@ -280,14 +315,5 @@
     <p>© 2025 BloxGlobe Studio™. All rights reserved.</p>
     <p>Developed with ❤️ by <a href="#">Abel</a></p>
   </footer>
-
-  <script>
-    function toggleUpdateLog() {
-      const content = document.getElementById("updateContent");
-      const button = document.getElementById("toggleButton");
-      content.classList.toggle("open");
-      button.textContent = content.classList.contains("open") ? "▲" : "▼";
-    }
-  </script>
 </body>
 </html>
