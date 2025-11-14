@@ -1,0 +1,18 @@
+/* Define CSS variables for scaling */
+:root {
+    --scale-factor: 1;
+    --base-font-size: 16px;
+    --container-padding: 15px;
+}
+
+/* Modified responsive design */
+html {
+    font-size: calc(var(--base-font-size) * var(--scale-factor));
+}
+
+.container {
+    width: 100%;
+    max-width: calc(1200px * var(--scale-factor));
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
