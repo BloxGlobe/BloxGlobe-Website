@@ -1,4 +1,4 @@
-﻿## Official Company Website
+## Official Company Website
 
 A clean, minimal static website for the Official Company Website project. This repository contains a single-page site intended to be served as a static site or previewed locally for development and testing.
 
@@ -7,11 +7,11 @@ Key points
 - Structure: Static HTML/CSS with optional backend utilities in the `backend/` folder.
 
 Contents
-- `index.html` â€” main site entry.
-- `style.css` â€” site styling.
-- `assets/` â€” images and supporting files.
-- `backend/` â€” minimal backend utilities (optional).
-- `LICENSE` â€” project license.
+- `index.html` — main site entry.
+- `style.css` — site styling.
+- `assets/` — images and supporting files.
+- `backend/` — minimal backend utilities (optional).
+- `LICENSE` — project license.
 
 Quick preview
 
@@ -62,4 +62,3 @@ Open an issue or contact the repository owner for questions or help.
 
 ---
 _Last updated: 2025-11-14_
-
