@@ -13,6 +13,7 @@
       color: #fff;
       display: flex;
     }
+
     /* Sidebar */
     .sidebar {
       width: 260px;
@@ -33,18 +34,26 @@
       cursor: pointer;
       transition: 0.2s;
       font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+      display: block;
     }
     .nav-item:hover {
       background: #1a1a1a;
     }
-    /* Main content */
+
+    /* Main content area */
     .content {
       flex: 1;
       padding: 30px;
+      overflow-y: auto;
     }
+
     h1 {
       margin-top: 0;
     }
+
+    /* Game cards */
     .games {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -65,6 +74,7 @@
     .game-card h3 {
       margin-top: 0;
     }
+
     .update-btn {
       display: inline-block;
       margin-top: 15px;
@@ -81,31 +91,21 @@
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Dashboard</h2>
-    <div class="nav-item">Home</div>
-    <div class="nav-item">Games</div>
-    <div class="nav-item">UGC Clothing</div>
-    <div class="nav-item"></div>
-    <div class="nav-item">Site Updates</div>
-    <div class="nav-item">Feedback</div>
-    <div class="nav-item">Settings</div>
-    <div style="margin-top:auto; text-align:center; font-size:12px; padding:15px; color:#777;">© BloxGlobe™ 2025</div>
+
+  <!-- Sidebar -->
+<div class="sidebar">
+  <h2>Dashboard</h2>
+  <nav>
+    <a class="nav-item" href="home.html" onclick="loadPage('home.html'); return false;">Home</a>
+    <a class="nav-item" href="games.html" onclick="loadPage('games.html'); return false;">Games</a>
+    <a class="nav-item" href="ugc.html" onclick="loadPage('ugc.html'); return false;">UGC Clothing</a>
+    <a class="nav-item" href="updates.html" onclick="loadPage('updates.html'); return false;">Site Updates</a>
+    <a class="nav-item" href="feedback.html" onclick="loadPage('feedback.html'); return false;">Feedback</a>
+    <a class="nav-item" href="settings.html" onclick="loadPage('settings.html'); return false;">Settings</a>
+  </nav>
+
+  <div style="margin-top:auto; text-align:center; font-size:12px; padding:15px; color:#777;">
+    <img src="assets/BloxGlobe.png" alt="Logo" style="width:20px; vertical-align:middle; margin-right:6px; opacity:0.8;">
+    © BloxGlobe™ 2025
   </div>
-  <div class="content">
-    <h1>Managed Games</h1>
-    <div class="games">
-      <div class="game-card">
-        <h3>R26</h3>
-        <p>Your upcoming Roblox project.</p>
-        <a href="https://www.roblox.com/games/9562232795/R26" class="update-btn">View Game Page</a>
-      </div>
-      <div class="game-card">
-        <h3>ReadyNode [Beta]</h3>
-        <p>Beta testing in progress.</p>
-        <a href="https://www.roblox.com/games/15950825340/ReadyNode-Beta" class="update-btn">View Game Page</a>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+</div>
