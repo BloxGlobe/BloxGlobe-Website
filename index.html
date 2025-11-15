@@ -8,47 +8,42 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <!-- Sidebar -->
   <div class="sidebar">
     <h2>Dashboard</h2>
-
-    <div class="nav-item" onclick="showPage('home')">🛖Home</div>
-    <div class="nav-item" onclick="showPage('games')">🎮Experiences</div>
-    <div class="nav-item" onclick="showPage('ugc')">👕UGC Clothing</div>
-
-    <!-- Divider -->
+    <div class="nav-item" onclick="showPage('home')">Home</div>
+    <div class="nav-item" onclick="showPage('games')">Experiences</div>
+    <div class="nav-item" onclick="showPage('ugc')">UGC Clothing</div>
     <div class="divider"></div>
-
-    <div class="nav-item" onclick="showPage('updates')">📢Site Updates</div>
-    <div class="nav-item" onclick="showPage('feedback')">💬Feedback</div>
-    <div class="nav-item" onclick="showPage('settings')">❄️Settings</div>
-
+    <div class="nav-item" onclick="showPage('updates')">Site Updates</div>
+    <div class="nav-item" onclick="showPage('feedback')">Feedback</div>
+    <div class="nav-item" onclick="showPage('settings')">Settings</div>
     <div class="footer">
-      <img src="Images/BloxGlobe.png" class="footer-logo">
-      © BloxGlobe™ 2025
+      <img src="Images/BloxGlobe.png" class="footer-logo"> © BloxGlobe™ 2025
     </div>
   </div>
 
-  <!-- Main Content -->
   <div class="content">
-
     <!-- HOME PAGE -->
     <div id="home" class="page active">
       <h1>Welcome to BloxGlobe Studio</h1>
-
-      <!-- A) Card Grid -->
+      <section class="intro">
+        <h2>We Build Interactive Roblox Experiences</h2>
+        <p>
+          BloxGlobe Studio focuses on developing high‑quality Roblox games, UGC assets,
+          and tools that empower creators. Explore your dashboards, track progress,
+          view live experience stats, and keep up with site-wide improvements.
+        </p>
+      </section>
       <div class="home-grid">
         <div class="home-card">
           <h3>Managed Experience's</h3>
           <p>Access, update, and view your Roblox creations.</p>
         </div>
-
         <div class="home-card">
           <h3>UGC Clothing</h3>
           <p>Track and manage clothing assets you design.</p>
         </div>
-
         <div class="home-card">
           <h3>Updates</h3>
           <p>Stay in the loop with the latest site changes.</p>
@@ -56,150 +51,136 @@
       </div>
     </div>
 
-
     <!-- GAMES PAGE -->
     <div id="games" class="page">
       <h1>Studio Experience's</h1>
-
-      <div class="game-grid">
-
+      <div class="game-grid reduced-stretch">
         <div class="game-card">
           <div class="game-icon"></div>
           <h3>R26</h3>
           <p>Upcoming sci-fi Roblox project.</p>
           <a href="https://www.roblox.com/games/85250100428738/R26" class="btn">View Game Page</a>
         </div>
-
         <div class="game-card">
           <div class="game-icon"></div>
           <h3>ReadyNode [Beta]</h3>
           <p>Servers, systems, and testing tools.</p>
           <a href="https://www.roblox.com/games/135869717619701/Beta" class="btn">View Game Page</a>
         </div>
-
       </div>
     </div>
-
 
     <!-- UGC PAGE -->
     <div id="ugc" class="page">
       <h1>UGC Clothing</h1>
       <p>Upload, track, and manage your UGC items.</p>
-
-      <!-- Faint Divider Between UGC and Updates -->
       <div class="soft-divider"></div>
-
     </div>
-
 
     <!-- UPDATES PAGE -->
     <div id="updates" class="page">
       <h1>Site Updates</h1>
-      <p>No updates yet.</p>
+      <div class="update-card secure-message">
+        <h3>Security Layer Added & api's to make this website safe</h3>
+        <p>
+          A temporary security mode is active. Full sign‑in & account linking is coming soon.
+          Icons for update logs will be added when uploaded.
+        </p>
+      </div>
     </div>
-
 
     <!-- FEEDBACK PAGE -->
     <div id="feedback" class="page">
       <h1>Feedback</h1>
-
       <div class="feedback-box">
         <textarea id="feedbackInput" placeholder="Write your feedback..."></textarea>
         <button class="btn" onclick="submitFeedback()">Submit</button>
       </div>
-
       <h2>Community Feedback</h2>
-      <div class="feedback-list" id="feedbackList">
-
-        <div class="feedback-item">
-          <p><strong>User123</strong>: Love the new dashboard!</p>
-
-          <div class="feedback-actions">
-            <button onclick="likeFeedback(this)">Like</button>
-            <button onclick="toggleComments(this)">Comments</button>
-            <button onclick="replyToFeedback(this)">Reply</button>
-          </div>
-
-          <div class="comments hidden">
-            <p><strong>Developer:</strong> Appreciate it!</p>
-          </div>
-
-        </div>
-
-      </div>
+      <div class="feedback-list" id="feedbackList"></div>
     </div>
-
 
     <!-- SETTINGS PAGE -->
     <div id="settings" class="page">
       <h1>Settings</h1>
-      <p>Customize your experience here.</p>
+      <p>If you do not have an account, please sign up or log in.</p>
+      <div class="login-options">
+        <button class="btn">Login with Email</button>
+        <button class="btn">Temporary Roblox Login</button>
+      </div>
     </div>
-
   </div>
 
-<script>
-  function showPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(page).classList.add('active');
-  }
-
-  // Submit Feedback
-  function submitFeedback() {
-    const input = document.getElementById("feedbackInput");
-    const text = input.value.trim();
-    if (!text) return;
-
-    const list = document.getElementById("feedbackList");
-
-    const item = document.createElement("div");
-    item.className = "feedback-item";
-    item.innerHTML = `
-      <p><strong>You</strong>: ${text}</p>
-      <div class="feedback-actions">
-        <button onclick="likeFeedback(this)">Like</button>
-        <button onclick="toggleComments(this)">Comments</button>
-        <button onclick="replyToFeedback(this)">Reply</button>
-      </div>
-      <div class="comments hidden"></div>
-    `;
-
-    list.prepend(item);
-    input.value = "";
-  }
-
-  // Like button
-  function likeFeedback(btn) {
-    if (!btn.liked) {
-      btn.liked = true;
-      btn.textContent = "Liked";
-    } else {
-      btn.liked = false;
-      btn.textContent = "Like";
+  <script>
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(page).classList.add('active');
     }
-  }
 
-  // Toggle comments
-  function toggleComments(btn) {
-    const comments = btn.parentElement.nextElementSibling;
-    comments.classList.toggle("hidden");
-  }
+    function submitFeedback() {
+      const input = document.getElementById("feedbackInput");
+      const text = input.value.trim();
+      if (!text) return;
 
-  // Reply
-  function replyToFeedback(btn) {
-    const comments = btn.parentElement.nextElementSibling;
+      const list = document.getElementById("feedbackList");
+      const item = document.createElement("div");
+      item.className = "feedback-item";
+      item.innerHTML = `<p><strong>You</strong>: ${text}</p>
+        <div class="feedback-actions">
+          <button onclick="likeFeedback(this)">Like</button>
+          <button onclick="toggleComments(this)">Comments</button>
+          <button onclick="replyToFeedback(this)">Reply</button>
+        </div>
+        <div class="comments hidden"></div>`;
 
-    const reply = prompt("Write your reply:");
-    if (!reply) return;
+      list.prepend(item);
+      input.value = "";
+    }
 
-    const p = document.createElement("p");
-    p.innerHTML = `<strong>You:</strong> ${reply}`;
-    comments.appendChild(p);
-    comments.classList.remove("hidden");
-  }
-</script>
+    function likeFeedback(btn) {
+      if (!btn.liked) {
+        btn.liked = true;
+        btn.textContent = "Liked";
+      } else {
+        btn.liked = false;
+        btn.textContent = "Like";
+      }
+    }
 
+    function toggleComments(btn) {
+      const comments = btn.parentElement.nextElementSibling;
+      comments.classList.toggle("hidden");
+    }
+
+    function replyToFeedback(btn) {
+      const comments = btn.parentElement.nextElementSibling;
+      const reply = prompt("Write your reply:");
+      if (!reply) return;
+      const p = document.createElement("p");
+      p.innerHTML = `<strong>You:</strong> ${reply}`;
+      comments.appendChild(p);
+      comments.classList.remove("hidden");
+    }
+  </script>
+
+  <script>
+    async function respondToSignal(payload) {
+      try {
+        const response = await fetch('https://apis.roblox.com/cloud/v2/signals/YOUR_SIGNAL_ID:fire', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': 'YOUR_API_KEY'
+          },
+          body: JSON.stringify({ data: payload })
+        });
+
+        const result = await response.json();
+        console.log('Signal response:', result);
+      } catch (err) {
+        console.error('Error responding to signal:', err);
+      }
+    }
+  </script>
 </body>
 </html>
-
-
