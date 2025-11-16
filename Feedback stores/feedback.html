@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Feedback - BloxGlobe</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .feedback-container { max-width: 800px; margin: 40px auto; }
+    .feedback-item { background:#111; padding:15px; margin-bottom:10px; border-radius:10px; }
+    .date { font-size:12px; opacity:0.7; }
+    a.back { color:#00adef; display:inline-block; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+
+<div class="feedback-container">
+  <a href="index.html" class="back">← Back to Dashboard</a>
+  <h1>All Stored Feedback</h1>
+
+  <div id="allFeedback"></div>
+</div>
+
+<script>
+  function loadFeedback() {
+    let stored = JSON.parse(localStorage.getItem("feedbackData") || "[]");
+    let container = document.getElementById("allFeedback");
+
+    if (stored.length === 0) {
+      container.innerHTML = "<p>No feedback submitted yet.</p>";
+      return;
+    }
+
+    stored.reverse().forEach(fb => {
+      let div = document.createElement("div");
+      div.className = "feedback-item";
+      div.innerHTML = `
+        <p><strong>User:</strong> ${fb.text}</p>
+        <p class="date">${fb.date}</p>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  loadFeedback();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Update Protection</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #0d0d0d;
+    }
+
+    .panel {
+      background: #131313;
+      padding: 30px;
+      border-radius: 14px;
+      border: 1px solid #222;
+      width: 380px;
+      box-shadow: 0px 0px 15px #00000070;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      background: #0f0f0f;
+      border: 1px solid #222;
+      color: white;
+    }
+
+    .btn {
+      width: 95%;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .success {
+      color: #00ff8a;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #ff4b4b;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="panel">
+  <h2>Admin Login</h2>
+  <p>Enter password to unlock Site Updates.</p>
+
+  <input id="passInput" type="password" placeholder="Enter admin password">
+
+  <button class="btn" onclick="authenticate()">Unlock</button>
+
+  <p id="status"></p>
+</div>
+
+<script>
+  // DEFAULT PASSWORD — change if needed
+  const ADMIN_PASSWORD = "BloxGlobe2025";
+
+  function authenticate() {
+    const input = document.getElementById("passInput").value.trim();
+    const status = document.getElementById("status");
+
+    if (input === "") {
+      status.textContent = "Password required.";
+      status.className = "error";
+      return;
+    }
+
+    if (input === ADMIN_PASSWORD) {
+      localStorage.setItem("updateAuth", "true");
+
+      status.textContent = "Access Granted ✔ Returning…";
+      status.className = "success";
+
+      setTimeout(() => {
+        history.back(); // return without page jump
+      }, 900);
+
+    } else {
+      status.textContent = "Incorrect password.";
+      status.className = "error";
+    }
+  }
+</script>
+
+</body>
+</html>
