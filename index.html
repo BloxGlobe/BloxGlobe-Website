@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BloxyGlobe Studio</title>
-<link rel="icon" type="image/png" href="/public/images/logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloxGlobe Dashboard</title>
+
+  <link rel="stylesheet" href="src/styles/global.css" />
+
+  <!-- Tailwind CDN (minimal) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body class="bg-bgPrimary text-white">
-<div id="root"></div>
-<script type="module" src="/src/main.tsx"></script>
+<body class="bg-gray-900 text-white">
+
+  <div class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 p-5 flex flex-col gap-3">
+      <h1 class="text-xl font-bold mb-4">BloxGlobe Panel</h1>
+
+      <button class="nav-btn" data-module="home module">Home</button>
+      <button class="nav-btn" data-module="experience module">Experiences</button>
+      <button class="nav-btn" data-module="ugc module">UGC Clothing</button>
+      <button class="nav-btn" data-module="feedback module">Feedback</button>
+      <button class="nav-btn" data-module="site module">Site Updates</button>
+      <button class="nav-btn" data-module="settings module">settings</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="app" class="flex-1 p-6 overflow-y-auto">
+      <h2 class="text-3xl font-bold">Welcome to your dashboard</h2>
+      <p>Select a module from the left to continue.</p>
+    </main>
+
+  </div>
+
+  <script src="src/components/router.js"></script>
 </body>
 </html>

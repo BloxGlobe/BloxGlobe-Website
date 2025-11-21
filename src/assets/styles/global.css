@@ -1,0 +1,147 @@
+/* -----------------------------------------
+   Global Tailwind Directives
+------------------------------------------ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------------------
+   Root Theme
+------------------------------------------ */
+:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --bg-panel: #151515;
+  --text-primary: #ffffff;
+  --text-muted: #b0b0b0;
+  --accent: #4f46e5;
+}
+
+/* -----------------------------------------
+   Global Page Styling
+------------------------------------------ */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: ui-sans-serif, system-ui, Arial;
+  overflow: hidden;
+}
+
+/* -----------------------------------------
+   Dashboard Layout
+------------------------------------------ */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: var(--bg-secondary);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #222;
+}
+
+.sidebar h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.sidebar .nav-item {
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  font-size: 15px;
+  transition: 0.15s ease-in-out;
+}
+
+.sidebar .nav-item:hover {
+  background: #2b2b2b;
+}
+
+.sidebar .active {
+  background: var(--accent);
+  color: white !important;
+}
+
+/* -----------------------------------------
+   Main Content Panel
+------------------------------------------ */
+#app {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
+  background: var(--bg-panel);
+}
+
+/* Smooth scrolling */
+#app::-webkit-scrollbar {
+  width: 8px;
+}
+
+#app::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 8px;
+}
+
+/* -----------------------------------------
+   Module Page Utility Styles
+------------------------------------------ */
+
+.module-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.module-description {
+  color: var(--text-muted);
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #1d1d1d;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #272727;
+}
+
+.card:hover {
+  border-color: #333;
+}
+
+/* Buttons */
+.btn {
+  background: var(--accent);
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: white;
+  transition: 0.15s;
+}
+
+.btn:hover {
+  background: #635cff;
+}
+
+/* 404 */
+.not-found {
+  text-align: center;
+  padding: 60px;
+}
+
+.not-found h1 {
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.not-found p {
+  color: var(--text-muted);
+  margin-top: 8px;
+}
