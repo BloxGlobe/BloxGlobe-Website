@@ -74,7 +74,7 @@ export default function RatingSystem() {
                   <Button
                     onClick={() => {
                       setOpen(false);
-                      alert("Thanks for your feedback!");
+                      alert("Thanks for sharing your feedback!");
                     }}
                   >
                     Submit
