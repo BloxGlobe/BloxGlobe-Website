@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BloxGlobe Dashboard</title>
 
-  <link rel="stylesheet" href="src/styles/global.css" />
+  <!-- Correct CSS path -->
+  <link rel="stylesheet" href="src/assets/styles/globals.css" />
 
-  <!-- Tailwind CDN (minimal) -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
@@ -19,61 +20,73 @@
     <aside class="w-64 bg-gray-800 p-5 flex flex-col gap-3">
       <h1 class="text-xl font-bold mb-4">BloxGlobe Panel</h1>
 
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-module="home">Home</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-module="experience">Experiences</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-module="ugc">UGC Clothing</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-module="feedback">Feedback</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-module="site">Site Updates</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-module="setting">Settings</button>
-
-      <script>
-      // Simple module loader: loads src/modules/<module>/index.html into #app
-      (function(){
-        const main = document.getElementById('app');
-
-        async function loadModule(name){
-          try{
-        const res = await fetch(`src/modules/${name}/index.html`);
-        if(!res.ok) throw new Error('HTTP ' + res.status);
-        const html = await res.text();
-        main.innerHTML = html;
-        document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('bg-gray-700'));
-        const active = document.querySelector(`.nav-btn[data-module="${name}"]`);
-        if(active) active.classList.add('bg-gray-700');
-        history.replaceState({module: name}, '', `#${name}`);
-          }catch(err){
-        main.innerHTML = `<h2 class="text-2xl font-bold">Error</h2><p>Could not load module "${name}".</p>`;
-        console.error(err);
-          }
-        }
-
-        document.querySelectorAll('.nav-btn').forEach(btn=>{
-          btn.addEventListener('click', ()=> loadModule(btn.dataset.module));
-        });
-
-        // initial load (use hash if present)
-        const initial = (location.hash && location.hash.slice(1)) || 'home';
-        const initialBtn = document.querySelector(`.nav-btn[data-module="${initial}"]`) || document.querySelector('.nav-btn[data-module="home"]');
-        if(initialBtn) initialBtn.click();
-
-        // handle back/forward
-        window.addEventListener('popstate', (e)=>{
-          const module = (e.state && e.state.module) || (location.hash && location.hash.slice(1)) || 'home';
-          const btn = document.querySelector(`.nav-btn[data-module="${module}"]`);
-          if(btn) btn.click();
-        });
-      })();
-      </script>
-        </aside>
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="home">Home</button>
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="experience">Experiences</button>
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="ugc">UGC Clothing</button>
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="feedback">Feedback</button>
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="site">Site Updates</button>
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="setting">Settings</button>
+    </aside>
 
     <!-- Main Content -->
     <main id="app" class="flex-1 p-6 overflow-y-auto">
-      <h2 class="text-3xl font-bold">Welcome to your dashboard</h2>
-      <p>Formal apology from me to u, were still working on the page and i promise u that will get things right.</p>
+      Loading...
     </main>
 
   </div>
 
-  <script src="src/router.js"></script>
+<script>
+/* -----------------------------------
+   PAGE LOADER (src/pages/*.html)
+------------------------------------- */
+(function(){
+  const app = document.getElementById('app');
+
+  async function loadPage(page){
+    try{
+      const res = await fetch(`src/pages/${page}.html`);
+      if(!res.ok) throw new Error("Page not found");
+
+      const html = await res.text();
+      app.innerHTML = html;
+
+      // Set active button
+      document.querySelectorAll('.nav-btn')
+        .forEach(btn => btn.classList.remove('bg-gray-700'));
+
+      const active = document.querySelector(`.nav-btn[data-page="${page}"]`);
+      if(active) active.classList.add('bg-gray-700');
+
+      // Update URL hash
+      history.replaceState({page: page}, '', `#${page}`);
+
+    } catch(err){
+      load404();
+    }
+  }
+
+  async function load404(){
+    const res = await fetch(`src/pages/404.html`);
+    app.innerHTML = await res.text();
+  }
+
+  // Attach click listeners
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => loadPage(btn.dataset.page));
+  });
+
+  // Initial load by hash
+  const initial = location.hash ? location.hash.slice(1) : 'home';
+  loadPage(initial);
+
+  // Browser navigation
+  window.addEventListener('popstate', (e)=>{
+    const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
+    loadPage(page);
+  });
+
+})();
+</script>
+
 </body>
 </html>
