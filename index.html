@@ -29,8 +29,18 @@
     </aside>
 
     <!-- Main Content -->
-    <main id="app" class="flex-1 p-6 overflow-y-auto">
-      Loading...
+    <main id="app" class="flex-1 flex flex-col overflow-y-auto">
+
+      <!-- Dynamic Page Content -->
+      <div id="page-content" class="p-6">
+        Loading...
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="mt-auto py-4 text-center opacity-60 text-sm border-t border-gray-700">
+        © <span id="year"></span> BloxGlobe — All rights reserved.
+      </footer>
+
     </main>
 
   </div>
@@ -40,7 +50,7 @@
    PAGE LOADER (src/pages/*.html)
 ------------------------------------- */
 (function(){
-  const app = document.getElementById('app');
+  const app = document.getElementById('page-content');
 
   async function loadPage(page){
     try{
@@ -70,20 +80,20 @@
     app.innerHTML = await res.text();
   }
 
-  // Attach click listeners
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => loadPage(btn.dataset.page));
   });
 
-  // Initial load by hash
   const initial = location.hash ? location.hash.slice(1) : 'home';
   loadPage(initial);
 
-  // Browser navigation
   window.addEventListener('popstate', (e)=>{
     const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
     loadPage(page);
   });
+
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
 
 })();
 </script>
