@@ -2,40 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global styles */
+/* GLOBAL */
 body {
-  @apply bg-bgPrimary text-white font-sans;
+  @apply bg-[#0f0f11] text-white font-sans overflow-hidden;
 }
 
-/* Dashboard Layout */
+h1, h2, h3 {
+  @apply font-semibold tracking-tight;
+}
+
+/* LAYOUT */
 .dashboard {
-  @apply flex h-screen;
+  @apply flex h-screen w-full;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
-  @apply w-64 bg-bgSecondary p-4 flex flex-col justify-between;
+  @apply w-64 bg-[#111214] border-r border-[#1a1b1e]
+         flex flex-col justify-between py-4 px-3;
 }
 
 .nav-item {
-  @apply p-2 my-1 rounded cursor-pointer hover:bg-gray-800 transition;
+  @apply flex items-center gap-3 px-3 py-2 my-1 rounded-lg
+         text-gray-300 hover:bg-[#1b1c1f] hover:text-white
+         transition-all duration-200 cursor-pointer;
 }
 
 .active-tab {
-  @apply bg-gray-800;
+  @apply bg-[#1e1f22] text-white;
 }
 
-/* Main content */
+/* MAIN CONTENT */
 .main-content {
-  @apply flex-1 p-6 overflow-y-auto;
+  @apply flex-1 overflow-y-auto p-8 bg-[#0f0f11];
 }
 
-/* Cards */
+/* SECTION TITLES */
+.section-title {
+  @apply text-xl font-bold mb-4;
+}
+
+/* CARDS */
 .card {
-  @apply bg-bgSecondary p-4 rounded-lg shadow-lg;
+  @apply bg-[#141517] border border-[#1e1f22]
+         rounded-xl shadow-md p-5 transition-all duration-200
+         hover:shadow-lg hover:scale-[1.01];
 }
 
-/* Buttons */
+/* GRID OF CARDS */
+.card-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* BUTTONS */
 .btn {
-  @apply px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 transition;
+  @apply px-4 py-2 rounded-lg bg-blue-600 text-white font-medium
+         hover:bg-blue-700 active:scale-95 transition-all;
+}
+
+/* INPUTS */
+.input {
+  @apply w-full bg-[#1a1b1e] border border-[#27282c]
+         rounded-xl px-4 py-3 outline-none text-white
+         focus:border-blue-500 focus:ring-2 focus:ring-blue-500;
+}
+
+/* TEXTAREAS */
+.textarea {
+  @apply w-full bg-[#1a1b1e] border border-[#27282c]
+         rounded-xl px-4 py-3 resize-none text-white
+         focus:border-blue-500 focus:ring-2 focus:ring-blue-500;
+}
+
+/* THIN SCROLLBAR — Roblox style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c2d31;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3c3d42;
 }
