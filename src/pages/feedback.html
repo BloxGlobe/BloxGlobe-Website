@@ -16,23 +16,19 @@
              transition-all duration-300 resize-none shadow-lg
              focus:bg-gray-600 focus:shadow-[0_0_15px_rgba(59,130,246,0.5)]"
       rows="4"
-      placeholder="Write something amazing..."
-    ></textarea>
+      placeholder="Write something amazing..."></textarea>
 
-    <!-- Smooth underline animation -->
-    <div class="absolute left-0 right-0 bottom-0 h-1 bg-blue-600 rounded-full
-                scale-x-0 origin-left transition-all duration-300"
-         id="inputBar">
-    </div>
+    <div id="inputBar"
+      class="absolute left-0 right-0 bottom-0 h-1 bg-blue-600 rounded-full
+             scale-x-0 origin-left transition-all duration-300"></div>
   </div>
 
-  <!-- SMOOTH SUBMIT BUTTON -->
+  <!-- SUBMIT BUTTON -->
   <button
     id="submitFeedback"
     class="mt-4 w-full py-3 text-lg bg-blue-600 hover:bg-blue-700 
            rounded-xl transition-all duration-300 font-semibold
-           hover:scale-[1.02] active:scale-95 shadow-md"
-  >
+           hover:scale-[1.02] active:scale-95 shadow-md">
     Send Feedback
   </button>
 
@@ -41,7 +37,7 @@
   </p>
 </div>
 
-<!-- FEEDBACK LIST -->
+<!-- LIST -->
 <div class="bg-gray-800 p-6 rounded-xl">
   <h2 class="text-xl font-semibold mb-3">Feedback List</h2>
 
@@ -51,24 +47,20 @@
 </div>
 
 <script>
-/* -------------------------------
-   FEEDBACK SYSTEM + ANIMATIONS
--------------------------------- */
+/* -----------------------------------
+     FEEDBACK SYSTEM + ANIMATIONS
+------------------------------------ */
 const STORAGE_KEY = "bloxglobe_feedbacks";
 const input = document.getElementById("feedbackInput");
 const bar = document.getElementById("inputBar");
 const statusMsg = document.getElementById("feedbackStatus");
 const listContainer = document.getElementById("feedbackList");
 
-/* Animate underline on focus */
-input.addEventListener("focus", () => {
-  bar.classList.add("scale-x-100");
-});
-input.addEventListener("blur", () => {
-  bar.classList.remove("scale-x-100");
-});
+/* Underline animation */
+input.addEventListener("focus", () => bar.classList.add("scale-x-100"));
+input.addEventListener("blur", () => bar.classList.remove("scale-x-100"));
 
-/* Load feedbacks */
+/* Load feedbacks on page load */
 function loadFeedbacks() {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
@@ -91,14 +83,13 @@ function loadFeedbacks() {
 
     listContainer.appendChild(box);
 
-    // Staggered animation
     setTimeout(() => {
       box.classList.remove("opacity-0", "translate-y-3");
     }, index * 50);
   });
 }
 
-/* Save new feedback */
+/* Save feedback */
 function saveFeedback() {
   const text = input.value.trim();
   if (!text) return;
@@ -121,10 +112,11 @@ function saveFeedback() {
 }
 
 document.getElementById("submitFeedback").addEventListener("click", saveFeedback);
+
+/* Initial load */
 loadFeedbacks();
 </script>
 
 <style>
-/* smooth scale animation fix */
 .scale-x-100 { transform: scaleX(1); }
 </style>

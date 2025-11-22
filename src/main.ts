@@ -1,17 +1,28 @@
-import { openSecurityPrompt } from "../packages/Oauth/securityPrompt";
+import { openSecurityPrompt } from "../packages/Oauth/securityPrompt.js"; 
+// 👆 IMPORTANT: .js extension because the compiled output in /dist uses .js
 
-document.addEventListener("click", (e) => {
-  const target = e.target as HTMLElement;
+// Wait until DOM is loaded so router-injected pages work
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
 
-  if (target.id === "postUpdateBtn") {
-    openSecurityPrompt(() => {
-      const input = document.getElementById("updateInput") as HTMLTextAreaElement;
-      const log = document.getElementById("changelog") as HTMLElement;
+    // Handle Site Updates → Post Update Button
+    if (target && target.id === "postUpdateBtn") {
+      openSecurityPrompt(() => {
+        const input = document.getElementById(
+          "updateInput"
+        ) as HTMLTextAreaElement;
+        const log = document.getElementById("changelog") as HTMLElement;
 
-      if (!input.value.trim()) return;
+        if (!input || !log) return; // Avoid router timing errors
+        if (!input.value.trim()) return;
 
-      log.innerHTML = `<div class="mb-2">• ${input.value}</div>` + log.innerHTML;
-      input.value = "";
-    });
-  }
+        // Add update
+        log.innerHTML =
+          `<div class="mb-2">• ${input.value}</div>` + log.innerHTML;
+
+        input.value = "";
+      });
+    }
+  });
 });
