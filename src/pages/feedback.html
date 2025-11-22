@@ -1,12 +1,12 @@
-<h1 class="text-3xl font-bold mb-4">User Feedback</h1>
+<h1 class="text-3xl font-bold mb-4">Forum</h1>
 
 <p class="opacity-80 mb-6">
-  Submit and view your feedback. Your messages stay saved in your local cloud.
+  Submit and view your feedback/message. Your messages stay stored in a local cloud.
 </p>
 
 <!-- FEEDBACK FORM -->
 <div class="bg-gray-800 p-6 rounded-xl mb-6">
-  <h2 class="text-xl font-semibold mb-3">Send Feedback</h2>
+  <h2 class="text-xl font-semibold mb-3">Send Message</h2>
 
   <!-- GIANT SMOOTH BAR -->
   <div class="relative">
@@ -25,11 +25,11 @@
 
   <!-- SUBMIT BUTTON -->
   <button
-    id="submitFeedback"
+    id="SubmitMessage"
     class="mt-4 w-full py-3 text-lg bg-blue-600 hover:bg-blue-700 
            rounded-xl transition-all duration-300 font-semibold
            hover:scale-[1.02] active:scale-95 shadow-md">
-    Send Feedback
+    Send Message
   </button>
 
   <p id="feedbackStatus" class="text-green-400 mt-2 opacity-0 transition text-sm">
@@ -47,9 +47,7 @@
 </div>
 
 <script>
-/* -----------------------------------
-     FEEDBACK SYSTEM + ANIMATIONS
------------------------------------- */
+
 const STORAGE_KEY = "bloxglobe_feedbacks";
 const input = document.getElementById("feedbackInput");
 const bar = document.getElementById("inputBar");
