@@ -5,44 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BloxGlobe Dashboard</title>
 
-  <!-- Correct CSS path -->
+  <!-- Correct global stylesheet -->
   <link rel="stylesheet" href="src/assets/styles/global.css" />
 
   <!-- Compiled Tailwind build -->
-<link rel="stylesheet" href="dist/output.css">
+  <link rel="stylesheet" href="dist/output.css">
 </head>
 
 <body class="bg-gray-900 text-white">
 
-  <div class="flex h-screen">
+  <div class="flex h-screen w-full overflow-hidden">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-800 p-5 flex flex-col gap-3">
+    <aside class="sidebar w-64 bg-gray-800 p-5 flex flex-col gap-3 shrink-0">
+
       <h1 class="text-xl font-bold mb-4">Dashboard</h1>
 
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="home">Home</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="experience">Experiences</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="ugc">UGC Clothing</button>
+      <button class="nav-btn" data-page="home">Home</button>
+      <button class="nav-btn" data-page="experience">Experiences</button>
+      <button class="nav-btn" data-page="ugc">UGC Clothing</button>
+
+      <!-- Divider Line -->
+      <div class="h-[1px] bg-gray-700 my-2 opacity-40"></div>
 
       <!-- Forums -->
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="feedback">Forums</button>
+      <button class="nav-btn" data-page="feedback">Forums</button>
+
+      <!-- Extra Horizontal Link Section -->
+      <div class="mt-3 flex items-center gap-2 text-sm opacity-60">
+        <a href="#" class="hover:opacity-100 transition">Docs</a>
+        <span>•</span>
+        <a href="#" class="hover:opacity-100 transition">Support</a>
+      </div>
 
       <!-- Game Updates -->
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="site">Game Updates</button>
+      <button class="nav-btn mt-2" data-page="site">Game Updates</button>
 
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="setting">Settings</button>
+      <button class="nav-btn" data-page="setting">Settings</button>
     </aside>
 
     <!-- Main Content -->
-    <main id="app" class="flex-1 flex flex-col overflow-y-auto">
+    <main id="app" class="main-content flex-1 flex flex-col overflow-y-auto">
 
       <!-- Dynamic Page Content -->
       <div id="page-content" class="p-6">
         Loading...
       </div>
 
-      <!-- FOOTER -->
-      <footer class="mt-auto py-4 text-center opacity-60 text-sm border-t border-gray-700">
+      <!-- FOOTER (left-aligned, visible, floating feel) -->
+      <footer class="py-3 text-left opacity-60 text-sm border-t border-gray-700 pl-6 w-full">
         © <span id="year"></span> BloxGlobe — All rights reserved.
       </footer>
 
@@ -50,9 +61,11 @@
 
   </div>
 
-<!-- *****************************************************
-     PAGE LOADER SCRIPT
-****************************************************** -->
+
+
+<!-- ----------------------------------------------------
+     PAGE LOADER SCRIPT (unchanged, cleaned)
+----------------------------------------------------- -->
 <script>
 (function(){
   const app = document.getElementById('page-content');
@@ -65,13 +78,14 @@
       const html = await res.text();
       app.innerHTML = html;
 
+      // Active highlight
       document.querySelectorAll('.nav-btn')
         .forEach(btn => btn.classList.remove('bg-gray-700'));
 
       const active = document.querySelector(`.nav-btn[data-page="${page}"]`);
       if(active) active.classList.add('bg-gray-700');
 
-      history.replaceState({page: page}, '', `#${page}`);
+      history.replaceState({page}, '', `#${page}`);
 
     } catch(err){
       load404();
@@ -83,25 +97,29 @@
     app.innerHTML = await res.text();
   }
 
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => loadPage(btn.dataset.page));
-  });
+  document.querySelectorAll('.nav-btn').forEach(btn =>
+    btn.addEventListener('click', () => loadPage(btn.dataset.page))
+  );
 
   const initial = location.hash ? location.hash.slice(1) : 'home';
   loadPage(initial);
 
   window.addEventListener('popstate', (e)=>{
-    const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
+    const page = (e.state?.page) || location.hash.slice(1) || 'home';
     loadPage(page);
   });
 
+  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
+
 })();
 </script>
 
-<!-- *****************************************************
+
+
+<!-- ----------------------------------------------------
      SECURITY PROMPT INTEGRATION
-****************************************************** -->
+----------------------------------------------------- -->
 <script type="module">
   import { openSecurityPrompt } from "./packages/Oauth/securityPrompt.ts";
 
@@ -110,7 +128,6 @@
 
     if (target && target.id === "postUpdateBtn") {
       openSecurityPrompt(() => {
-
         const input = document.getElementById("updateInput");
         const log = document.getElementById("changelog");
 
