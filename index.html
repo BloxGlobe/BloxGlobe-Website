@@ -23,8 +23,13 @@
       <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="home">Home</button>
       <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="experience">Experiences</button>
       <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="ugc">UGC Clothing</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="feedback">Feedback</button>
-      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="site">Site Updates</button>
+
+      <!-- Renamed Feedback → Forums -->
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="feedback">Forums</button>
+
+      <!-- Renamed Site Updates → Game Updates -->
+      <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="site">Game Updates</button>
+
       <button class="nav-btn block w-full text-left px-3 py-2 rounded hover:bg-gray-700" data-page="setting">Settings</button>
     </aside>
 
@@ -45,9 +50,8 @@
 
   </div>
 
-
 <!-- *****************************************************
-     PAGE LOADER SCRIPT (unchanged — only fixed broken bits)
+     PAGE LOADER SCRIPT
 ****************************************************** -->
 <script>
 (function(){
@@ -61,14 +65,12 @@
       const html = await res.text();
       app.innerHTML = html;
 
-      // Set active button highlight
       document.querySelectorAll('.nav-btn')
         .forEach(btn => btn.classList.remove('bg-gray-700'));
 
       const active = document.querySelector(`.nav-btn[data-page="${page}"]`);
       if(active) active.classList.add('bg-gray-700');
 
-      // Update URL hash
       history.replaceState({page: page}, '', `#${page}`);
 
     } catch(err){
@@ -93,21 +95,16 @@
     loadPage(page);
   });
 
-  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
-
 })();
 </script>
 
-
-
 <!-- *****************************************************
-     SECURITY PROMPT + ROUTING (your requested addition)
+     SECURITY PROMPT INTEGRATION
 ****************************************************** -->
 <script type="module">
   import { openSecurityPrompt } from "./packages/Oauth/securityPrompt.ts";
 
-  // Attach security check to POST UPDATE button
   document.addEventListener("click", (e) => {
     const target = e.target;
 
